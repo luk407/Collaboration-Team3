@@ -8,7 +8,7 @@
 import Foundation
 
 struct PollutionResponse: Decodable {
-    let pollution: [Pollution]
+    let pollution: Pollution
 }
 
 struct Pollution: Decodable {
