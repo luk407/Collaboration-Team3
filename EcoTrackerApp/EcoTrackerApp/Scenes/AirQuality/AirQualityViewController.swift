@@ -20,7 +20,11 @@ final class AirQualityViewController: UIViewController {
     
     private let searchBar = UISearchBar()
     
+    private let searchController = UISearchController()
+    
     private var pollutionForCity: Pollution?
+    
+    var cityName: String?
     
     private let airQualityViewModel = AirQualityViewModel()
     
@@ -106,21 +110,48 @@ final class AirQualityViewController: UIViewController {
     }
     
     private func setupNavigationBarUI() {
-        let searchItem = UIBarButtonItem(customView: searchBar)
-        navigationItem.leftBarButtonItems = [searchItem]
-        searchBar.delegate = self
+        navigationItem.searchController = searchController
+        searchController.searchBar.delegate = self
+        searchController.delegate = self
         
-        searchBar.widthAnchor.constraint(equalToConstant: 300).isActive = true
-        searchBar.searchBarStyle = UISearchBar.Style.prominent
-        searchBar.placeholder = "Type the name of a city..."
-        searchBar.isTranslucent = false
+        searchController.searchBar.searchBarStyle = UISearchBar.Style.prominent
+        searchController.searchBar.placeholder = "Type the name of a city..."
+        searchController.searchBar.isTranslucent = false
+    }
+    
+    private func startFetching() {
+        airQualityViewModel.requestPollutionInfo(with: cityName!)
     }
 }
 
 
 //MARK: - Extensions
 extension AirQualityViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+////        cityName = searchText
+////        print(searchText)
+////        airQualityViewModel.requestPollutionInfo(with: cityName ?? "")
+//    }
+//    
+//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+//        cityName = searchBar.text
+//        print(searchBar.text!)
+//        airQualityViewModel.requestPollutionInfo(with: cityName ?? "")
+//    }
+}
+
+extension AirQualityViewController: UISearchControllerDelegate {
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        cityName = searchBar.text
+        startFetching()
+    }
+}
+
+extension AirQualityViewController: AirQualityViewModelDelegate {
+    func pollutionInfoFetched(with cityPollution: Pollution) {
+        cityNameLabel.text = cityName
+        aqiusLabel.text = String(cityPollution.aqius)
+        aqicnLabel.text = String(cityPollution.aqicn)
     }
 }
