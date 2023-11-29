@@ -18,6 +18,8 @@ final class AirQualityViewController: UIViewController {
     
     private let aqicnLabel = UILabel()
     
+    private let searchBar = UISearchBar()
+    
     private var pollutionForCity: Pollution?
     
     private let airQualityViewModel = AirQualityViewModel()
@@ -50,6 +52,7 @@ final class AirQualityViewController: UIViewController {
         setupCityNameLabelUI()
         setupAqiusLabelUI()
         setupAqicnLabelUI()
+        setupNavigationBarUI()
     }
     
     //MARK: - Constraints
@@ -100,5 +103,24 @@ final class AirQualityViewController: UIViewController {
     private func setupAqicnLabelUI() {
         aqicnLabel.font = UIFont.systemFont(ofSize: 20)
         aqicnLabel.textAlignment = .left
+    }
+    
+    private func setupNavigationBarUI() {
+        let searchItem = UIBarButtonItem(customView: searchBar)
+        navigationItem.leftBarButtonItems = [searchItem]
+        searchBar.delegate = self
+        
+        searchBar.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        searchBar.searchBarStyle = UISearchBar.Style.prominent
+        searchBar.placeholder = "Type the name of a city..."
+        searchBar.isTranslucent = false
+    }
+}
+
+
+//MARK: - Extensions
+extension AirQualityViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
     }
 }
