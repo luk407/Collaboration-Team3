@@ -27,6 +27,7 @@
 		A15A71F62B17496B00801F21 /* SolarResourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A71F52B17496B00801F21 /* SolarResourceViewController.swift */; };
 		A15A71F92B17498000801F21 /* PopulationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A71F82B17498000801F21 /* PopulationViewController.swift */; };
 		A15A71FB2B17499100801F21 /* PopulationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A71FA2B17499100801F21 /* PopulationViewModel.swift */; };
+		A15A71FD2B17519B00801F21 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A71FC2B17519B00801F21 /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		A15A71F52B17496B00801F21 /* SolarResourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarResourceViewController.swift; sourceTree = "<group>"; };
 		A15A71F82B17498000801F21 /* PopulationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationViewController.swift; sourceTree = "<group>"; };
 		A15A71FA2B17499100801F21 /* PopulationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationViewModel.swift; sourceTree = "<group>"; };
+		A15A71FC2B17519B00801F21 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 				A15A71E52B1747CE00801F21 /* Specie */,
 				A15A71E62B1747DC00801F21 /* SolarResource */,
 				A15A71E72B1747E700801F21 /* Population */,
+				A15A71FC2B17519B00801F21 /* TabBarController.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				A15A71DF2B17473000801F21 /* SolarResourceModel.swift in Sources */,
 				A15A71DB2B1746F000801F21 /* WeatherModel.swift in Sources */,
 				A15A71F02B17492E00801F21 /* SpecieViewController.swift in Sources */,
+				A15A71FD2B17519B00801F21 /* TabBarController.swift in Sources */,
 				A15A71EA2B1748CA00801F21 /* AirQualityViewModel.swift in Sources */,
 				A15A71F42B17495800801F21 /* SolarResourceViewModel.swift in Sources */,
 				A15A71F92B17498000801F21 /* PopulationViewController.swift in Sources */,
