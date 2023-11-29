@@ -12,7 +12,6 @@
 		A15A71C42B17380400801F21 /* AirQualityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A71C32B17380400801F21 /* AirQualityViewController.swift */; };
 		A15A71C92B17380600801F21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A15A71C82B17380600801F21 /* Assets.xcassets */; };
 		A15A71CC2B17380600801F21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A15A71CA2B17380600801F21 /* LaunchScreen.storyboard */; };
-		A15A71D62B17460D00801F21 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A71D52B17460D00801F21 /* NetworkManager.swift */; };
 		A15A71D92B1746D400801F21 /* AirQualityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A71D82B1746D400801F21 /* AirQualityModel.swift */; };
 		A15A71DB2B1746F000801F21 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A71DA2B1746F000801F21 /* WeatherModel.swift */; };
 		A15A71DD2B17471400801F21 /* SpecieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A71DC2B17471400801F21 /* SpecieModel.swift */; };
@@ -28,6 +27,7 @@
 		A15A71F92B17498000801F21 /* PopulationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A71F82B17498000801F21 /* PopulationViewController.swift */; };
 		A15A71FB2B17499100801F21 /* PopulationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A71FA2B17499100801F21 /* PopulationViewModel.swift */; };
 		A15A71FD2B17519B00801F21 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A71FC2B17519B00801F21 /* TabBarController.swift */; };
+		A15A72002B17847300801F21 /* GenericNetworkLayer in Frameworks */ = {isa = PBXBuildFile; productRef = A15A71FF2B17847300801F21 /* GenericNetworkLayer */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,7 +38,6 @@
 		A15A71C82B17380600801F21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A15A71CB2B17380600801F21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A15A71CD2B17380600801F21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A15A71D52B17460D00801F21 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		A15A71D82B1746D400801F21 /* AirQualityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQualityModel.swift; sourceTree = "<group>"; };
 		A15A71DA2B1746F000801F21 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		A15A71DC2B17471400801F21 /* SpecieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecieModel.swift; sourceTree = "<group>"; };
@@ -61,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A15A72002B17847300801F21 /* GenericNetworkLayer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,7 +87,6 @@
 			isa = PBXGroup;
 			children = (
 				A15A71D32B1745AE00801F21 /* App */,
-				A15A71D42B1745EE00801F21 /* NetworkManager */,
 				A15A71D72B17461900801F21 /* Models */,
 				A15A71E22B17476400801F21 /* Scenes */,
 				A15A71E82B17481600801F21 /* Resources */,
@@ -103,14 +102,6 @@
 				A15A71C12B17380400801F21 /* SceneDelegate.swift */,
 			);
 			path = App;
-			sourceTree = "<group>";
-		};
-		A15A71D42B1745EE00801F21 /* NetworkManager */ = {
-			isa = PBXGroup;
-			children = (
-				A15A71D52B17460D00801F21 /* NetworkManager.swift */,
-			);
-			path = NetworkManager;
 			sourceTree = "<group>";
 		};
 		A15A71D72B17461900801F21 /* Models */ = {
@@ -208,6 +199,9 @@
 			dependencies = (
 			);
 			name = EcoTrackerApp;
+			packageProductDependencies = (
+				A15A71FF2B17847300801F21 /* GenericNetworkLayer */,
+			);
 			productName = EcoTrackerApp;
 			productReference = A15A71BC2B17380400801F21 /* EcoTrackerApp.app */;
 			productType = "com.apple.product-type.application";
@@ -236,6 +230,9 @@
 				Base,
 			);
 			mainGroup = A15A71B32B17380400801F21;
+			packageReferences = (
+				A15A71FE2B17847300801F21 /* XCRemoteSwiftPackageReference "GenericNetworkLayer" */,
+			);
 			productRefGroup = A15A71BD2B17380400801F21 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -262,7 +259,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A15A71D62B17460D00801F21 /* NetworkManager.swift in Sources */,
 				A15A71EE2B17491800801F21 /* WeatherViewController.swift in Sources */,
 				A15A71C42B17380400801F21 /* AirQualityViewController.swift in Sources */,
 				A15A71D92B1746D400801F21 /* AirQualityModel.swift in Sources */,
@@ -495,6 +491,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A15A71FE2B17847300801F21 /* XCRemoteSwiftPackageReference "GenericNetworkLayer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/luk407/GenericNetworkLayer.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A15A71FF2B17847300801F21 /* GenericNetworkLayer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A15A71FE2B17847300801F21 /* XCRemoteSwiftPackageReference "GenericNetworkLayer" */;
+			productName = GenericNetworkLayer;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A15A71B42B17380400801F21 /* Project object */;
 }
