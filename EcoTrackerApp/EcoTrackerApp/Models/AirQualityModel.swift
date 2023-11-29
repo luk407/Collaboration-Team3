@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+struct PollutionResponse: Decodable {
+    let pollution: [Pollution]
+}
+
+struct Pollution: Decodable {
+    let aqius: Int
+    let aqicn: Int
+}
+
+
