@@ -4,16 +4,15 @@
 //
 //  Created by Luka Gazdeliani on 29.11.23.
 //
+
 import GenericNetworkLayer
 import Foundation
 
 protocol AirQualityViewModelDelegate: AnyObject {
-    func pollutionInfoFetched(with: Pollution)
+    func pollutionInfoFetched(with: DataClass)
 }
 
 final class AirQualityViewModel {
-    
-    private var cityPollution: Pollution?
     
     weak var delegate: AirQualityViewModelDelegate?
     
@@ -27,8 +26,7 @@ final class AirQualityViewModel {
         Network().request(with: url) { [weak self] (result: Result<PollutionResponse, Error>) in
             switch result {
             case .success(let response):
-                self?.cityPollution = response.data.current.pollution
-                self?.delegate?.pollutionInfoFetched(with: response.data.current.pollution)
+                self?.delegate?.pollutionInfoFetched(with: response.data)
             case .failure(let failure):
                 print(failure.localizedDescription)
                 break

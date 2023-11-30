@@ -13,7 +13,7 @@ struct PollutionResponse: Decodable {
 }
 
 struct DataClass: Decodable {
-    let city, state, country: String
+    let city: String
     let current: Current
 }
 

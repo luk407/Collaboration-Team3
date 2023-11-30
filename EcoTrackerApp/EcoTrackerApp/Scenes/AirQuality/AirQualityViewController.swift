@@ -18,11 +18,11 @@ final class AirQualityViewController: UIViewController {
     
     private let aqicnLabel = UILabel()
     
-    private let searchBar = UISearchBar()
+    private let qualityImageView = UIImageView()
+    
+    private var qualityLabel = UILabel()
     
     private let searchController = UISearchController()
-    
-    private var pollutionForCity: Pollution?
     
     var cityName: String?
     
@@ -44,6 +44,8 @@ final class AirQualityViewController: UIViewController {
         mainStackView.addArrangedSubview(cityNameLabel)
         mainStackView.addArrangedSubview(aqiusLabel)
         mainStackView.addArrangedSubview(aqicnLabel)
+        mainStackView.addArrangedSubview(qualityLabel)
+        mainStackView.addArrangedSubview(qualityImageView)
     }
     
     private func setupConstraints() {
@@ -51,6 +53,8 @@ final class AirQualityViewController: UIViewController {
         setupCityNameLabelConstraints()
         setupAqiusLabelConstraints()
         setupAqicnLabelConstraints()
+        setupQualityLabelConstraints()
+        setupQualityImageViewConstraints()
     }
     
     private func setupUI() {
@@ -58,16 +62,18 @@ final class AirQualityViewController: UIViewController {
         setupCityNameLabelUI()
         setupAqiusLabelUI()
         setupAqicnLabelUI()
+        setupQualityLabelUI()
         setupNavigationBarUI()
+        setupQualityImageViewUI()
     }
     
     //MARK: - Constraints
     private func setupMainStackViewConstraints() {
         NSLayoutConstraint.activate([
-            mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            mainStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
             mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
         ])
     }
     
@@ -94,6 +100,24 @@ final class AirQualityViewController: UIViewController {
             aqicnLabel.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
+    
+    private func setupQualityLabelConstraints() {
+        NSLayoutConstraint.activate([
+            qualityLabel.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor),
+            qualityLabel.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor),
+            qualityLabel.heightAnchor.constraint(equalToConstant: 30)
+        ])
+    }
+    
+    private func setupQualityImageViewConstraints() {
+        NSLayoutConstraint.activate([
+            qualityImageView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor),
+            qualityImageView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor),
+            qualityImageView.widthAnchor.constraint(equalTo: mainStackView.widthAnchor),
+            qualityImageView.heightAnchor.constraint(equalTo: qualityImageView.widthAnchor)
+        ])
+    }
+    
     private func setupAirQualityViewModelDelegate() {
         airQualityViewModel.delegate = self
     }
@@ -115,13 +139,24 @@ final class AirQualityViewController: UIViewController {
     private func setupAqiusLabelUI() {
         aqiusLabel.font = UIFont.systemFont(ofSize: 20)
         aqiusLabel.textAlignment = .left
-        aqiusLabel.text = "AQIUI: 0"
+        aqiusLabel.text = "AQIUS: 0"
     }
     
     private func setupAqicnLabelUI() {
         aqicnLabel.font = UIFont.systemFont(ofSize: 20)
         aqicnLabel.textAlignment = .left
         aqicnLabel.text = "AQICN: 0"
+    }
+    
+    private func setupQualityLabelUI() {
+        qualityLabel.font = UIFont.boldSystemFont(ofSize: 15)
+        qualityLabel.textAlignment = .center
+        qualityLabel.text = "Quality"
+    }
+    
+    private func setupQualityImageViewUI() {
+        qualityImageView.image = UIImage(systemName: "circle")
+        qualityImageView.contentMode = .scaleAspectFit
     }
     
     private func setupNavigationBarUI() {
@@ -154,11 +189,32 @@ extension AirQualityViewController: UISearchControllerDelegate {
 }
 
 extension AirQualityViewController: AirQualityViewModelDelegate {
-    func pollutionInfoFetched(with cityPollution: Pollution) {
+    func pollutionInfoFetched(with cityPollution: DataClass) {
         DispatchQueue.main.async {
-            self.cityNameLabel.text = self.cityName
-            self.aqiusLabel.text = "AQIUS: \(String(cityPollution.aqius))"
-            self.aqicnLabel.text = "AQIUS: \(String(cityPollution.aqicn))"
+            self.cityNameLabel.text = cityPollution.city
+            self.aqiusLabel.text = "AQIUS: \(String(cityPollution.current.pollution.aqius))"
+            self.aqicnLabel.text = "AQICN: \(String(cityPollution.current.pollution.aqicn))"
+            
+            if cityPollution.current.pollution.aqius <= 50 { // example: san diego
+                self.qualityLabel.text = "Quality: Good"
+                self.qualityImageView.image = UIImage(named: "Good")?.withTintColor(UIColor.green)
+            } else if cityPollution.current.pollution.aqius > 50 && cityPollution.current.pollution.aqius <= 100 { // example: sacramento
+                self.qualityLabel.text = "Quality: Moderate"
+                self.qualityImageView.image = UIImage(named: "Moderate")?.withTintColor(UIColor.cyan)
+            } else if cityPollution.current.pollution.aqius > 100 && cityPollution.current.pollution.aqius <= 150 {
+                self.qualityLabel.text = "Quality: Unhealthy for Sensitive Groups"
+                self.qualityImageView.image = UIImage(named: "Unhealthyfor")?.withTintColor(UIColor.yellow)
+            } else if cityPollution.current.pollution.aqius > 150 && cityPollution.current.pollution.aqius <= 200 {
+                self.qualityLabel.text = "Quality: Unhealthy"
+                self.qualityImageView.image = UIImage(named: "Unhealthy")?.withTintColor(UIColor.orange)
+            } else if cityPollution.current.pollution.aqius > 200 && cityPollution.current.pollution.aqius <= 300 {
+                self.qualityLabel.text = "Quality: Very Unhealthy"
+                self.qualityImageView.image = UIImage(named: "VeryUnhealthy")?.withTintColor(UIColor.red)
+            } else if cityPollution.current.pollution.aqius > 300 {
+                self.qualityLabel.text = "Quality: Hazardous"
+                self.qualityImageView.image = UIImage(named: "Hazardous")?.withTintColor(UIColor.black)
+            }
+            
         }
     }
 }
