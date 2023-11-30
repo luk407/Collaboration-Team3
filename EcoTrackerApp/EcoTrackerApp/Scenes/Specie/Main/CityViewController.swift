@@ -51,8 +51,8 @@ final class CityViewController: UIViewController {
         searchController.searchResultsUpdater = self
         
         searchController.searchBar.placeholder = "Search"
-        searchController.hidesNavigationBarDuringPresentation = true
-        searchController.obscuresBackgroundDuringPresentation = true
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.obscuresBackgroundDuringPresentation = false
     }
     
     private func setupTableView() {
