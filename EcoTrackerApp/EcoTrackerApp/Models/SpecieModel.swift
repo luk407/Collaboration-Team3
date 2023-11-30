@@ -9,24 +9,24 @@
 import Foundation
 
 // MARK: - CityID Model
-struct CityID: Decodable {
-    let results: [Result]
+struct CityIDResponse: Decodable {
+    let results: [City]
     
-    struct Result: Codable {
+    struct City: Codable {
         let id: Int
     }
 }
 
 // MARK: - Species Model
-struct Species: Decodable {
-    let results: [Result]
+struct SpeciesResponse: Decodable {
+    let results: [Specie]
 }
 
-struct Result: Decodable {
-    let taxon: Taxon
+struct Specie: Decodable {
+    let taxon: SpecieDetails
 }
 
-struct Taxon: Decodable {
+struct SpecieDetails: Decodable {
     let name: String
     let defaultPhoto: DefaultPhoto
     let wikipediaURL: String?
