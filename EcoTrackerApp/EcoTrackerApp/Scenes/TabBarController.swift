@@ -39,13 +39,13 @@ final class TabBarController: UITabBarController {
         
         let weatherNavigationController = self.createNav(
             with: "Weather",
-            and: UIImage(systemName: "umbrella.fill"),
+            and: UIImage(systemName: "cloud.sun.fill"),
             vc: weatherViewController
         )
         
         let specieNavigationController = self.createNav(
             with: "Specie",
-            and: UIImage(systemName: "bird.circle.fill"),
+            and: UIImage(systemName: "globe.europe.africa.fill"),
             vc: specieViewController
         )
         
@@ -71,6 +71,7 @@ final class TabBarController: UITabBarController {
         
         tabBar.tintColor = UIColor(red: 0.93, green: 0.56, blue: 0.37, alpha: 1.00)
         tabBar.unselectedItemTintColor = .systemGray
+        
     }
 
 }
