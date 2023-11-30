@@ -35,6 +35,7 @@ final class AirQualityViewController: UIViewController {
         addSubViews()
         setupConstraints()
         setupUI()
+        setupAirQualityViewModelDelegate()
     }
 
     //MARK: Setup Methods
@@ -53,6 +54,7 @@ final class AirQualityViewController: UIViewController {
     }
     
     private func setupUI() {
+        setupMainStackViewUI()
         setupCityNameLabelUI()
         setupAqiusLabelUI()
         setupAqicnLabelUI()
@@ -73,7 +75,7 @@ final class AirQualityViewController: UIViewController {
         NSLayoutConstraint.activate([
             cityNameLabel.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor),
             cityNameLabel.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor),
-            cityNameLabel.heightAnchor.constraint(equalToConstant: 70)
+            cityNameLabel.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
@@ -81,7 +83,7 @@ final class AirQualityViewController: UIViewController {
         NSLayoutConstraint.activate([
             aqiusLabel.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor),
             aqiusLabel.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor),
-            aqiusLabel.heightAnchor.constraint(equalToConstant: 50)
+            aqiusLabel.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
     
@@ -89,24 +91,37 @@ final class AirQualityViewController: UIViewController {
         NSLayoutConstraint.activate([
             aqicnLabel.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor),
             aqicnLabel.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor),
-            aqicnLabel.heightAnchor.constraint(equalToConstant: 50)
+            aqicnLabel.heightAnchor.constraint(equalToConstant: 30)
         ])
+    }
+    private func setupAirQualityViewModelDelegate() {
+        airQualityViewModel.delegate = self
     }
     
     //MARK: - UI
+    private func setupMainStackViewUI() {
+        mainStackView.translatesAutoresizingMaskIntoConstraints = false
+        mainStackView.axis = .vertical
+        mainStackView.spacing = 10
+        mainStackView.alignment = .center
+        mainStackView.distribution = .fillProportionally
+    }
     private func setupCityNameLabelUI() {
         cityNameLabel.font = UIFont.boldSystemFont(ofSize: 30)
-        cityNameLabel.textAlignment = .center
+        cityNameLabel.textAlignment = .left
+        cityNameLabel.text = "City"
     }
     
     private func setupAqiusLabelUI() {
         aqiusLabel.font = UIFont.systemFont(ofSize: 20)
         aqiusLabel.textAlignment = .left
+        aqiusLabel.text = "AQIUI: 0"
     }
     
     private func setupAqicnLabelUI() {
         aqicnLabel.font = UIFont.systemFont(ofSize: 20)
         aqicnLabel.textAlignment = .left
+        aqicnLabel.text = "AQICN: 0"
     }
     
     private func setupNavigationBarUI() {
@@ -127,17 +142,7 @@ final class AirQualityViewController: UIViewController {
 
 //MARK: - Extensions
 extension AirQualityViewController: UISearchBarDelegate {
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-////        cityName = searchText
-////        print(searchText)
-////        airQualityViewModel.requestPollutionInfo(with: cityName ?? "")
-//    }
-//    
-//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-//        cityName = searchBar.text
-//        print(searchBar.text!)
-//        airQualityViewModel.requestPollutionInfo(with: cityName ?? "")
-//    }
+    
 }
 
 extension AirQualityViewController: UISearchControllerDelegate {
@@ -150,8 +155,10 @@ extension AirQualityViewController: UISearchControllerDelegate {
 
 extension AirQualityViewController: AirQualityViewModelDelegate {
     func pollutionInfoFetched(with cityPollution: Pollution) {
-        cityNameLabel.text = cityName
-        aqiusLabel.text = String(cityPollution.aqius)
-        aqicnLabel.text = String(cityPollution.aqicn)
+        DispatchQueue.main.async {
+            self.cityNameLabel.text = self.cityName
+            self.aqiusLabel.text = "AQIUS: \(String(cityPollution.aqius))"
+            self.aqicnLabel.text = "AQIUS: \(String(cityPollution.aqicn))"
+        }
     }
 }
