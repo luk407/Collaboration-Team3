@@ -1,5 +1,5 @@
 ////
-////  SpecieViewModel.swift
+////  SpeciesViewModel.swift
 ////  EcoTrackerApp
 ////
 ////  Created by Luka Gazdeliani on 29.11.23.
@@ -9,7 +9,7 @@
 //import Foundation
 //import GenericNetworkLayer
 //
-//protocol SpecieViewModelDelegate: AnyObject {
+//protocol SpeciesViewModelDelegate: AnyObject {
 //    func cityIDFetched(_ cityID: Int)
 //    func speciesFetched(_ species: [SpecieDetails])
 //    func showError(_ error: Error)

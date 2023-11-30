@@ -1,5 +1,5 @@
 ////
-////  SpecieViewController.swift
+////  SpeciesViewController.swift
 ////  EcoTrackerApp
 ////
 ////  Created by Luka Gazdeliani on 29.11.23.
@@ -9,7 +9,7 @@
 //import UIKit
 //import GenericNetworkLayer
 //
-//final class SpecieViewController: UIViewController {
+//final class SpeciesViewController: UIViewController {
 //    
 //    // MARK: - Properties
 //    private let tableView: UITableView = {
