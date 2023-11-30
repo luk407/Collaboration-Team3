@@ -22,12 +22,15 @@ final class CityViewController: UIViewController {
     
     private var cities = [City]()
     private let viewModel = CityViewModel(networkManager: Network())
+    private let searchController = UISearchController()
     
     // MARK: - ViewLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupBackground()
+        setupNavigationBar()
+        setupSearchBar()
         setupTableView()
         
         setupViewModelDelegate()
@@ -37,6 +40,19 @@ final class CityViewController: UIViewController {
     // MARK: - Private Methods
     private func setupBackground() {
         view.backgroundColor = .systemBackground
+    }
+    
+    private func setupNavigationBar() {
+        self.navigationItem.title = "Search for a City to find related Species"
+    }
+    
+    private func setupSearchBar() {
+        navigationItem.searchController = searchController
+        searchController.searchResultsUpdater = self
+        
+        searchController.searchBar.placeholder = "Search"
+        searchController.hidesNavigationBarDuringPresentation = true
+        searchController.obscuresBackgroundDuringPresentation = true
     }
     
     private func setupTableView() {
@@ -73,6 +89,14 @@ extension CityViewController: UITableViewDataSource {
         }
         cell.configure(with: cities[indexPath.row])
         return cell
+    }
+}
+
+// MARK: - SearchController Methods
+extension CityViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text, !searchText.isEmpty else { return }
+        viewModel.fetchCities(cityName: searchText)
     }
 }
 

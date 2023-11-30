@@ -28,21 +28,24 @@ final class CityViewModel {
     
     // MARK: - ViewLifeCycle
     func viewDidLoad() {
-        citiesFetched(with: "")
+        fetchCities(cityName: "")
     }
     
     // MARK: - Methods
+    func searchCities(with cityName: String) {
+        fetchCities(cityName: cityName)
+    }
+    
     func didSelectCity(at indexPath: IndexPath) {
         if let cityID = cities?[indexPath.row].id {
             delegate?.navigateToSpecieDetails(with: cityID)
         }
     }
     
-    func citiesFetched(with cityName: String) {
+    func fetchCities(cityName: String) {
         let baseURL = "https://api.inaturalist.org/"
         let endpoint = "v1/places/autocomplete?q="
         let urlString = "\(baseURL)\(endpoint)\(cityName)"
-        print(urlString)
         
         guard let cityIdUrl = URL(string: urlString) else {
             delegate?.showError(NetworkError.error(error: Error.self as! Error))
