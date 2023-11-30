@@ -111,10 +111,8 @@ final class AirQualityViewController: UIViewController {
     
     private func setupQualityImageViewConstraints() {
         NSLayoutConstraint.activate([
-            qualityImageView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor),
-            qualityImageView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor),
-            qualityImageView.widthAnchor.constraint(equalTo: mainStackView.widthAnchor),
-            qualityImageView.heightAnchor.constraint(equalTo: qualityImageView.widthAnchor)
+            qualityImageView.widthAnchor.constraint(equalToConstant: 200),
+            qualityImageView.heightAnchor.constraint(equalToConstant: 200)
         ])
     }
     
