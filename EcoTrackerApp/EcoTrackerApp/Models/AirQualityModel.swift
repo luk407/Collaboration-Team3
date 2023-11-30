@@ -7,7 +7,17 @@
 
 import Foundation
 
+
 struct PollutionResponse: Decodable {
+    let data: DataClass
+}
+
+struct DataClass: Decodable {
+    let city, state, country: String
+    let current: Current
+}
+
+struct Current: Decodable {
     let pollution: Pollution
 }
 
