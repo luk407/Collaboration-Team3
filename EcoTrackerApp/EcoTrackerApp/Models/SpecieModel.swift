@@ -8,13 +8,14 @@
 
 import Foundation
 
-// MARK: - CityID Model
+// MARK: - Cities Model
 struct CityIDResponse: Decodable {
     let results: [City]
-    
-    struct City: Codable {
-        let id: Int
-    }
+}
+
+struct City: Codable {
+    let name: String
+    let id: Int
 }
 
 // MARK: - Species Model
@@ -29,7 +30,7 @@ struct Specie: Decodable {
 struct SpecieDetails: Decodable {
     let name: String
     let defaultPhoto: DefaultPhoto
-    let wikipediaURL: String?
+    let wikipediaURL: String
     
     enum CodingKeys: String, CodingKey {
         case name
