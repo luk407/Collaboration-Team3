@@ -28,7 +28,9 @@ final class WeatherViewController: UIViewController {
     private var weatherMainLabel = UILabel()
     
     private var weatherDescriptionLabel = UILabel()
-
+    
+    private let weatherViewModel = WeatherViewModel()
+    
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +38,9 @@ final class WeatherViewController: UIViewController {
         addSubViews()
         setupConstraints()
         setupUI()
+        setupWeatherViewModelDelegate()
     }
-
+    
     //MARK: Setup Methods
     private func addSubViews() {
         view.addSubview(mainStackView)
@@ -73,6 +76,14 @@ final class WeatherViewController: UIViewController {
         setupCityLabelUI()
         setupWeatherMainLabelUI()
         setupWeatherDescriptionLabelUI()
+    }
+    
+    //MARK: - Methods
+    private func showWeatherButtonClicked() {
+        guard let latDouble = Double(latTextField.text!) else { return }
+        guard let longDouble = Double(longTextField.text!) else { return }
+        
+        weatherViewModel.requestWeatherInfo(lat: latDouble, long: longDouble)
     }
     
     //MARK: - Setup Constraints
@@ -172,6 +183,9 @@ final class WeatherViewController: UIViewController {
         showWeatherButton.setTitle("Show Weather", for: .normal)
         showWeatherButton.layer.cornerRadius = 8
         showWeatherButton.layer.backgroundColor = UIColor(red: 125/255, green: 125/255, blue: 125/255, alpha: 0.3).cgColor
+        showWeatherButton.addAction(UIAction(handler: { [ weak self] action in
+            self?.showWeatherButtonClicked()
+        }), for: .touchUpInside)
     }
     
     private func setupFetchedFactsStackViewUI() {
@@ -207,5 +221,21 @@ final class WeatherViewController: UIViewController {
         weatherDescriptionLabel.textAlignment = .left
         weatherDescriptionLabel.text = "Description"
         weatherMainLabel.numberOfLines = 0
+    }
+    
+    private func setupWeatherViewModelDelegate() {
+        weatherViewModel.delegate = self
+    }
+    
+}
+//MARK: - Extensions
+extension WeatherViewController: WeatherViewModelDelegate {
+    func weatherInfoFetched(response: WeatherResponse) {
+        DispatchQueue.main.async {
+            self.countryLabel.text = "Country: \(response.city.country)"
+            self.cityLabel.text = "City: \(response.city.name)"
+            self.weatherMainLabel.text = "Weather: \(response.list[0].weather[0].main)"
+            self.weatherDescriptionLabel.text = "Weather Description: \(response.list[0].weather[0].description)"
+        }
     }
 }

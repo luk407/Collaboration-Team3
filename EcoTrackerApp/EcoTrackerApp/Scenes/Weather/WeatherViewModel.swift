@@ -12,7 +12,7 @@ protocol WeatherViewModelDelegate: AnyObject {
     func weatherInfoFetched(response: WeatherResponse)
 }
 
-class WeatherViewModel {
+final class WeatherViewModel {
     
     weak var delegate: WeatherViewModelDelegate?
     
@@ -28,6 +28,7 @@ class WeatherViewModel {
             case .success(let response):
                 self?.delegate?.weatherInfoFetched(response: response)
             case .failure(let failure):
+                print(failure)
                 break
             }
             
