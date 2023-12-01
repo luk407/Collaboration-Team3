@@ -31,7 +31,7 @@ final class AirQualityViewController: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        setupViewBackground()
         addSubViews()
         setupConstraints()
         setupUI()
@@ -120,7 +120,11 @@ final class AirQualityViewController: UIViewController {
         airQualityViewModel.delegate = self
     }
     
-    //MARK: - UI
+    //MARK: - Private Methods
+    
+    private func setupViewBackground() {
+        view.backgroundColor = .systemBackground
+    }
     private func setupMainStackViewUI() {
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
         mainStackView.axis = .vertical

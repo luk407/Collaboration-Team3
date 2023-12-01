@@ -28,7 +28,6 @@ final class AirQualityViewModel {
             case .success(let response):
                 self?.delegate?.pollutionInfoFetched(with: response.data)
             case .failure(let failure):
-                print(failure.localizedDescription)
                 break
             }
         }
