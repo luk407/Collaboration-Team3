@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct PollutionResponse: Decodable {
     let data: DataClass
 }

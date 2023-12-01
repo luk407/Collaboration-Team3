@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  AirQualityViewController.swift
 //  EcoTrackerApp
 //
 //  Created by Luka Gazdeliani on 29.11.23.
@@ -24,7 +24,7 @@ final class AirQualityViewController: UIViewController {
     
     private let searchController = UISearchController()
     
-    var cityName: String?
+    private var cityName: String?
     
     private let airQualityViewModel = AirQualityViewModel()
     
@@ -71,7 +71,7 @@ final class AirQualityViewController: UIViewController {
     private func setupMainStackViewConstraints() {
         NSLayoutConstraint.activate([
             mainStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
-            mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100),
             mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
         ])
@@ -81,7 +81,7 @@ final class AirQualityViewController: UIViewController {
         NSLayoutConstraint.activate([
             cityNameLabel.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor),
             cityNameLabel.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor),
-            cityNameLabel.heightAnchor.constraint(equalToConstant: 50)
+            cityNameLabel.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
     
@@ -89,7 +89,7 @@ final class AirQualityViewController: UIViewController {
         NSLayoutConstraint.activate([
             aqiusLabel.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor),
             aqiusLabel.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor),
-            aqiusLabel.heightAnchor.constraint(equalToConstant: 30)
+            aqiusLabel.heightAnchor.constraint(equalToConstant: 20)
         ])
     }
     
@@ -97,7 +97,7 @@ final class AirQualityViewController: UIViewController {
         NSLayoutConstraint.activate([
             aqicnLabel.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor),
             aqicnLabel.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor),
-            aqicnLabel.heightAnchor.constraint(equalToConstant: 30)
+            aqicnLabel.heightAnchor.constraint(equalToConstant: 20)
         ])
     }
     
@@ -105,7 +105,7 @@ final class AirQualityViewController: UIViewController {
         NSLayoutConstraint.activate([
             qualityLabel.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor),
             qualityLabel.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor),
-            qualityLabel.heightAnchor.constraint(equalToConstant: 30)
+            qualityLabel.heightAnchor.constraint(equalToConstant: 20)
         ])
     }
     
@@ -153,7 +153,6 @@ final class AirQualityViewController: UIViewController {
     }
     
     private func setupQualityImageViewUI() {
-        qualityImageView.image = UIImage(systemName: "circle")
         qualityImageView.contentMode = .scaleAspectFit
     }
     
