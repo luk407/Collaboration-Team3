@@ -33,6 +33,9 @@ final class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        addSubViews()
+        setupConstraints()
+        setupUI()
     }
 
     //MARK: Setup Methods
