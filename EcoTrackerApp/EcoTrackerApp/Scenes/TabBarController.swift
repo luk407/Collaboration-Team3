@@ -12,7 +12,7 @@ final class TabBarController: UITabBarController {
     // MARK: - Properties
     private let airQualityViewController = AirQualityViewController()
     private let weatherViewController = WeatherViewController()
-    private let specieViewController = CityViewController()
+    private let specieViewController = SpecieViewController()
     private let solarResourceViewController = SolarResourceViewController()
     private let populationViewController = PopulationViewController()
     
