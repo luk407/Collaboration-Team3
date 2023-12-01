@@ -34,7 +34,7 @@ final class WeatherViewController: UIViewController {
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        setupViewBackgroundColor()
         addSubViews()
         setupConstraints()
         setupUI()
@@ -158,6 +158,11 @@ final class WeatherViewController: UIViewController {
     }
     
     //MARK: - Private Methods
+    
+    private func setupViewBackgroundColor() {
+        view.backgroundColor = .white
+    }
+    
     private func setupMainStackViewUI() {
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
         mainStackView.axis = .vertical

@@ -8,14 +8,17 @@
 import GenericNetworkLayer
 import Foundation
 
+//MARK: - Protocols
 protocol WeatherViewModelDelegate: AnyObject {
     func weatherInfoFetched(response: WeatherResponse)
 }
 
 final class WeatherViewModel {
     
+    //MARK: Properties
     weak var delegate: WeatherViewModelDelegate?
     
+    //MARK: - Methods
     func requestWeatherInfo(lat: Double, long: Double) {
         fetchWeatherInfo(lat: lat, long: long)
     }
