@@ -11,11 +11,11 @@ import GenericNetworkLayer
 
 protocol SpeciesViewModelDelegate: AnyObject {
     func speciesFetched(_ species: [Specie])
-//    func specieImageFetched(_ image: UIImage)
     func showError(_ error: Error)
 }
 
 final class SpeciesViewModel {
+    // MARK: - Properties
     private var cityID: Int
     private let networkManager: NetworkService
     
@@ -28,12 +28,13 @@ final class SpeciesViewModel {
     
     // MARK: - ViewLifeCycle
     func viewDidLoad() {
-        fetchSpecieDetails(with: 10616)
+        fetchSpecieDetails(with: cityID)
     }
     
+    // MARK: - Private Methods
     private func fetchSpecieDetails(with cityID: Int) {
-        let baseURL = "https://api.inaturalist.org/v1/observations/species_counts"
-        let endpoint = "?place_id="
+        let baseURL = "https://api.inaturalist.org/v1/observations/species_counts?per_page=5"
+        let endpoint = "&place_id="
         let urlString = "\(baseURL)\(endpoint)\(cityID)"
         
         guard let speciesURL = URL(string: urlString) else { return }
@@ -46,12 +47,6 @@ final class SpeciesViewModel {
             }
         }
     }
-    
-//    private func fetchImage(from url: String) {
-//        Network().downloadImage(from: url) { [weak self] image in
-//            self?.delegate?.specieImageFetched(image ?? UIImage())
-//        }
-//    }
 }
 
 

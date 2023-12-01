@@ -16,8 +16,9 @@ final class SpeciesUITableViewCell: UITableViewCell {
     private let mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.spacing = 5
-        stackView.backgroundColor = .systemGray5
+        stackView.alignment = .fill
+        stackView.distribution = .fillProportionally
+        stackView.backgroundColor = .systemBackground
         stackView.layoutMargins = .init(top: 10, left: 10, bottom: 10, right: 10)
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -28,104 +29,99 @@ final class SpeciesUITableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.image = UIImage(named:"")
         imageView.contentMode = .scaleAspectFit
-        imageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: 130).isActive = true
         return imageView
     }()
     
     private lazy var detailsWrapperStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [nameInfoStackView, authorInfoStackView, wikipediaInfoStackView])
         stackView.axis = .vertical
-        stackView.spacing = 10
-        stackView.backgroundColor = .systemBackground
+        stackView.distribution = .fillEqually
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
         return stackView
     }()
     
     private lazy var nameInfoStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [nameLabel, nameInfoLabel])
         stackView.axis = .horizontal
-        stackView.spacing = 20
-        stackView.backgroundColor = .systemBackground
-        stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        stackView.distribution = .fillProportionally
+        stackView.alignment = .fill
+        stackView.spacing = 5
         return stackView
     }()
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Name"
+        label.text = "Name:"
+        label.widthAnchor.constraint(equalToConstant: 75).isActive = true
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         label.textColor = .darkGray
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let nameInfoLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.textColor = .darkGray
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var authorInfoStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [authorLabel, authorInfoLabel])
         stackView.axis = .horizontal
-        stackView.spacing = 20
-        stackView.backgroundColor = .systemBackground
-        stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        stackView.distribution = .fillProportionally
+        stackView.alignment = .fill
+        stackView.spacing = 5
         return stackView
     }()
     
     private let authorLabel: UILabel = {
         let label = UILabel()
-        label.text = "Author"
+        label.text = "Author:"
+        label.widthAnchor.constraint(equalToConstant: 75).isActive = true
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         label.textColor = .darkGray
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let authorInfoLabel: UILabel = {
         let label = UILabel()
+        label.numberOfLines = 0
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.textColor = .darkGray
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var wikipediaInfoStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [wikipediaURLLabel, wikipediaURLInfoLabel])
         stackView.axis = .horizontal
-        stackView.spacing = 20
-        stackView.backgroundColor = .systemBackground
-        stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        stackView.distribution = .fillProportionally
+        stackView.alignment = .fill
+        stackView.spacing = 5
         return stackView
     }()
     
     private let wikipediaURLLabel: UILabel = {
         let label = UILabel()
         label.text = "Wikipedia:"
+        label.widthAnchor.constraint(equalToConstant: 75).isActive = true
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         label.textColor = .darkGray
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let wikipediaURLInfoLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        label.textColor = .darkGray
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.font = UIFont.italicSystemFont(ofSize: 12)
+        label.textColor = .blue
         return label
     }()
     
@@ -152,11 +148,11 @@ final class SpeciesUITableViewCell: UITableViewCell {
     }
     
     //MARK: - Configure
-    func configure(with specie: SpecieDetails) {
-        setImage(from: specie.defaultPhoto.mediumURL)
-        nameInfoLabel.text = specie.name
-        authorInfoLabel.text = specie.defaultPhoto.attribution
-        wikipediaURLInfoLabel.text = specie.wikipediaURL
+    func configure(with specie: Specie) {
+        setImage(from: specie.taxon.defaultPhoto.mediumURL)
+        nameInfoLabel.text = specie.taxon.name
+        authorInfoLabel.text = specie.taxon.defaultPhoto.attribution
+        wikipediaURLInfoLabel.text = specie.taxon.wikipediaURL
     }
     
     // MARK: - Private Methods
@@ -182,7 +178,7 @@ final class SpeciesUITableViewCell: UITableViewCell {
     }
     
     private func setImage(from url: String) {
-        Network().downloadImage(from: url) { [weak self] image in
+        NetworkManager().downloadImage(from: url) { [weak self] image in
             DispatchQueue.main.async {
                 self?.specieImageView.image = image
             }

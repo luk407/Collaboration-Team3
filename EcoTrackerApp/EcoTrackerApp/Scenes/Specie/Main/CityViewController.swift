@@ -21,7 +21,7 @@ final class CityViewController: UIViewController {
     }()
     
     private var cities = [City]()
-    private let viewModel = CityViewModel(networkManager: Network())
+    private let viewModel = CityViewModel(networkManager: NetworkManager())
     private let searchController = UISearchController()
     
     // MARK: - ViewLifeCycle

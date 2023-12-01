@@ -48,7 +48,7 @@ final class CityViewModel {
         let urlString = "\(baseURL)\(endpoint)\(cityName)"
         
         guard let cityIdUrl = URL(string: urlString) else {
-            delegate?.showError(Error.self as! Error)
+            delegate?.showError(ViewModelError.invalidURL)
             return
         }
         
@@ -63,4 +63,9 @@ final class CityViewModel {
             }
         }
     }
+}
+
+// MARK: - Error Enum
+enum ViewModelError: Error {
+    case invalidURL
 }
