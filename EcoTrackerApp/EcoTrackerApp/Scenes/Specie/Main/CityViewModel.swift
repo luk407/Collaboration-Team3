@@ -44,11 +44,11 @@ final class CityViewModel {
     
     func fetchCities(cityName: String) {
         let baseURL = "https://api.inaturalist.org/"
-        let endpoint = "v1/places/autocomplete?q="
+        let endpoint = "v1/places/autocomplete?per_page=5&q="
         let urlString = "\(baseURL)\(endpoint)\(cityName)"
         
         guard let cityIdUrl = URL(string: urlString) else {
-            delegate?.showError(NetworkError.error(error: Error.self as! Error))
+            delegate?.showError(Error.self as! Error)
             return
         }
         

@@ -8,7 +8,7 @@
 
 import Foundation
 
-// MARK: - CityID Model
+// MARK: - Cities Model
 struct CityIDResponse: Decodable {
     let results: [City]
 }

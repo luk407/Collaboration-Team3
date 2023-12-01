@@ -10,8 +10,8 @@ import UIKit
 import GenericNetworkLayer
 
 protocol SpeciesViewModelDelegate: AnyObject {
-    func speciesFetched(_ species: [SpecieDetails])
-    func specieImageFetched(_ image: UIImage)
+    func speciesFetched(_ species: [Specie])
+//    func specieImageFetched(_ image: UIImage)
     func showError(_ error: Error)
 }
 
@@ -28,7 +28,7 @@ final class SpeciesViewModel {
     
     // MARK: - ViewLifeCycle
     func viewDidLoad() {
-        fetchSpecieDetails(with: 0)
+        fetchSpecieDetails(with: 10616)
     }
     
     private func fetchSpecieDetails(with cityID: Int) {
@@ -36,23 +36,22 @@ final class SpeciesViewModel {
         let endpoint = "?place_id="
         let urlString = "\(baseURL)\(endpoint)\(cityID)"
         
-        
         guard let speciesURL = URL(string: urlString) else { return }
         networkManager.request(with: speciesURL) { [weak self] (result: Result<SpeciesResponse, Error>) in
             switch result {
             case .success(let response):
-                self?.delegate?.speciesFetched(response.results.map { $0.taxon })
+                self?.delegate?.speciesFetched(response.results)
             case .failure(let error):
                 self?.delegate?.showError(error)
             }
         }
     }
     
-    private func fetchImage(from url: String) {
-        Network().downloadImage(from: url) { [weak self] image in
-            self?.delegate?.specieImageFetched(image ?? UIImage())
-        }
-    }
+//    private func fetchImage(from url: String) {
+//        Network().downloadImage(from: url) { [weak self] image in
+//            self?.delegate?.specieImageFetched(image ?? UIImage())
+//        }
+//    }
 }
 
 

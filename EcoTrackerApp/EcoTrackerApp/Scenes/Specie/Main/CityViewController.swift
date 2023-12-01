@@ -117,8 +117,8 @@ extension CityViewController: CityViewModelDelegate {
     }
     
     func navigateToSpecieDetails(with cityID: Int) {
-        //        let speciesPage = SpecieViewController(cityID: cityID)
-        //        navigationController?.pushViewController(speciesPage, animated: true)
+        let speciesPage = SpeciesViewController(cityID: cityID)
+        navigationController?.pushViewController(speciesPage, animated: true)
     }
     
     func showError(_ error: Error) {

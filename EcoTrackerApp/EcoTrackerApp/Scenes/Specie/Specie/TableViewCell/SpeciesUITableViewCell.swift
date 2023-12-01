@@ -16,7 +16,7 @@ final class SpeciesUITableViewCell: UITableViewCell {
     private let mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.spacing = 10
+        stackView.spacing = 5
         stackView.backgroundColor = .systemGray5
         stackView.layoutMargins = .init(top: 10, left: 10, bottom: 10, right: 10)
         stackView.isLayoutMarginsRelativeArrangement = true
