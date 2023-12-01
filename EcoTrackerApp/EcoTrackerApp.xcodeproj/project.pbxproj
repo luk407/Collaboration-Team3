@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E1837612B1A734800235D8F /* CountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1837602B1A734800235D8F /* CountryTableViewCell.swift */; };
 		A15A71C02B17380400801F21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A71BF2B17380400801F21 /* AppDelegate.swift */; };
 		A15A71C22B17380400801F21 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A71C12B17380400801F21 /* SceneDelegate.swift */; };
 		A15A71C42B17380400801F21 /* AirQualityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A71C32B17380400801F21 /* AirQualityViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3E1837602B1A734800235D8F /* CountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTableViewCell.swift; sourceTree = "<group>"; };
 		A15A71BC2B17380400801F21 /* EcoTrackerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EcoTrackerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A15A71BF2B17380400801F21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A15A71C12B17380400801F21 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +79,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E18375F2B1A732D00235D8F /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				3E1837602B1A734800235D8F /* CountryTableViewCell.swift */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
 		A15A71B32B17380400801F21 = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +189,7 @@
 		A15A71E72B1747E700801F21 /* Population */ = {
 			isa = PBXGroup;
 			children = (
+				3E18375F2B1A732D00235D8F /* TableViewCell */,
 				A15A71FA2B17499100801F21 /* PopulationViewModel.swift */,
 				A15A71F82B17498000801F21 /* PopulationViewController.swift */,
 			);
@@ -260,16 +271,16 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
 				TargetAttributes = {
 					A15A71BB2B17380400801F21 = {
-						CreatedOnToolsVersion = 15.0.1;
+						CreatedOnToolsVersion = 12.4;
 					};
 				};
 			};
 			buildConfigurationList = A15A71B72B17380400801F21 /* Build configuration list for PBXProject "EcoTrackerApp" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -318,6 +329,7 @@
 				A15A71F02B17492E00801F21 /* SpeciesViewController.swift in Sources */,
 				B5961F922B1878CD005AC912 /* CityUITableViewCell.swift in Sources */,
 				A15A71FD2B17519B00801F21 /* TabBarController.swift in Sources */,
+				3E1837612B1A734800235D8F /* CountryTableViewCell.swift in Sources */,
 				B5961F9B2B1894C3005AC912 /* CityViewModel.swift in Sources */,
 				B5961FA12B18C65A005AC912 /* SpeciesUITableViewCell.swift in Sources */,
 				A15A71EA2B1748CA00801F21 /* AirQualityViewModel.swift in Sources */,
